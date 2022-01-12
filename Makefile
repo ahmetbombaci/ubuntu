@@ -4,11 +4,22 @@ list-installed-repos:
 	# cat /etc/apt/sources.list
 	# ls /etc/apt/sources.list.d/
 
+list-installed-apps:
+	snap list
+	sudo apt list
+	pip3 list
+
+list-installed-app-names:
+	grep -R "Name=" ~/.local/share/applications
+	grep -R "Name=" /usr/share/applications
+
 list-environment-variables:
 	cat /etc/environment
 
 display-ubuntu-version:
 	cat /etc/os-release
+	cat /proc/version
+	lsb_release -a
 
 list-xinput:
 	xinput list
