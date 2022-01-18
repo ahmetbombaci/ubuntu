@@ -1,1 +1,1 @@
-My personal notes about my Ubuntu environment and commands.
+My personal notes about my Ubuntu environment, bash, and gnome utils.
