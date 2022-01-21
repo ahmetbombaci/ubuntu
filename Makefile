@@ -3,6 +3,9 @@
 # * https://itsfoss.com/
 # * https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
 
+# See also https://cheatography.com/davechild/cheat-sheets/linux-command-line/
+# 
+
 ubuntu-support-status:
 	hwe-support-status --verbose
 	ubuntu-security-status
@@ -19,6 +22,37 @@ ubuntu-version-neofetch:
 
 ubuntu-version-kernel:
 	cat /proc/version
+
+ubuntu-cpu-info:
+	less /proc/cpuinfo
+
+ubuntu-find-keybinding:
+	gsettings list-recursively | grep '<Control><Alt>' | less
+
+linux-proc:
+	# https://www.geeksforgeeks.org/proc-file-system-linux/
+	# /proc/PID/cmdline	Command line arguments.
+	# /proc/PID/cpu	Current and last cpu in which it was executed.
+	# /proc/PID/cwd	Link to the current working directory.
+	# /proc/PID/environ	Values of environment variables.
+	# /proc/PID/exe	Link to the executable of this process.
+	# /proc/PID/fd	Directory, which contains all file descriptors.
+	# /proc/PID/maps	Memory maps to executables and library files.
+	# /proc/PID/mem	Memory held by this process.
+	# /proc/PID/root	Link to the root directory of this process.
+	# /proc/PID/stat	Process status.
+	# /proc/PID/statm	Process memory status information.
+	# /proc/PID/status	Process status in human readable form.
+	# /proc/crypto	list of available cryptographic modules
+	# /proc/diskstats	information (including device numbers) for each of the logical disk devices
+	# /proc/filesystems	list of the file systems supported by the kernel at the time of listing
+	# /proc/kmsg	holding messages output by the kernel
+	# /proc/meminfo	summary of how the kernel is managing its memory.
+	# /proc/scsi	information about any devices connected via a SCSI or RAID controller
+	# /proc/tty	information about the current terminals
+	# /proc/version	containing the Linux kernel version, distribution number, gcc version number (used to build the kernel) 
+	#                and any other pertinent information relating to the version of the kernel currently running
+
 
 ubuntu-version-kernel-uname:
 	uname -a 
@@ -70,10 +104,28 @@ list-installed-app-names:
 	ls /snap
 	umake --list-installed
 
+list-installed-packages:
+	dpkg -l
+
+package-deb-install:
+	# low level package management tool for debian systems
+	dpkg -i package_file
+
+package-identify:
+	dpkg -S file_name
+
+package-check-status:
+	# installed vs not installed vs ...
+	dpkg -s zoom
+
 list-environment-variables:
 	env
 	# printenv
+	# printenv USER
 	# cat /etc/environment
+
+list-large-files:
+	find ~ -type f -size +10M
 
 list-list-commands:
 	apropos list
@@ -165,6 +217,55 @@ hint_cat:
 	# concat all movie.mpeg files to a single mpeg file
 	# $ cat movie.mpeg.0* > movie.mpeg
 
+hint_compress:
+	# http://www.gnu.org/software/tar/manual/index.html
+	# gzip, bzip2, tar, zip, rsync
+	# gzip filename
+	# gzip -r foldername
+	#
+	# gzip -d filename.gz
+	# gunzip filename.gz
+	#
+	# gunzip -c filename | less
+	# zcat filename.gz | less
+	# zless filename
+	#
+	# tar modes:
+	#  c: create
+	#  x: extract
+	#  r: append
+	#  t: list
+	# mkdir -p playground/dir-{001..100}
+	# touch playground/dir-{001..100}/file-{A..Z}
+	# tar cf playground.tar playground
+	# tar tf playground.tar
+	# option `v`: verbose
+	# tar tvf playground.tar
+	# mkdir foo
+	# cd foo
+	# tar xf ../playground.tar
+	#
+	# sudo tar cf /media/BigDisk/home.tar /home
+	# cd /
+	# sudo tar xf /media/BigDisk/home.tar
+	# tar xf archive.tar pathname
+	# tar xf ../playground2.tar --wildcards 'home/me/playground/dir-*/file-A'
+	# find playground -name 'file-A' -exec tar rf playground.tar '{}' '+'
+	#
+	# tar option `z`: use gzip, `j`: use bzip2
+	# find playground -name 'file-A' | tar czf playground.tgz -T -
+	# ssh remote-sys 'tar cf - Documents' | tar xf -
+	#
+	# zip / unzip: the main use of these programs is for exchanging files with Windows systems
+	#
+	# rsync -av source destination
+	# # `source/` will copy contents of source directory
+	# rsync -av source/ destination
+	# 
+	# # use `--delete` option so deleted files will be deleted during sync
+	# sudo rsync -av --delete /etc /home /usr/local /media/BigDisk/backup
+	# sudo rsync -av --delete --rsh=ssh /etc /home /usr/local remote-sys:/backup
+
 hint_date:
 	date
 
@@ -182,14 +283,113 @@ hint_history:
 	# !!
 	#
 	# !string --> Repeat last history list item starting with string.
-i	# !?string --> Repeat last history list item containing string.
+	# !?string --> Repeat last history list item containing string.
 	#
 	# Ctrl-r: Incremental search
 	#      Ctrl-j: Copy history entry to current command line
 	#      Enter: Execute command
 
+hint_networking:
+	# http://tldp.org/LDP/nag2/index.html
+	# ping, traceroute, ip, netstat, ftp, sftp, wget, ssh, scp
+	ping -c 1 linuxcommand.org
+	# tracepath slashdot.org
+	ip a
+	# ip addresses
+	ip a | grep inet
+	# examine network interface
+	netstat -ie
+	# kernel's network routing table
+	netstat -r
+	# wget http://linuxcommand.org/index.php
+	ssh -V
+	# Let’s say we are sitting at a Linux system called lin-
+	# uxbox that is running an X server, and we want to run the xload program on a
+	# remote system named remote-sys to see the program’s graphical output on our
+	# local system. We could do this:
+	# ssh -X remote-sys
+	# xload
+	#
+	# scp bob@remote-sys:document.txt .
+	#
+	# An SSH Client for Windows?
+	# PuTTY is available at http://www.chiark.greenend.org.uk/~sgtatham/putty/
+
 hint_process:
 	# ps top jobs bg fg kill killall shutdown
+	# 
+	# Run xlogo as background process
+	# xlogo &
+	# jobs
+	# fg %1
+	#
+	# Ctrl-c: terminate
+	# Ctrl-z: stop/pause (use bg or fg to resume)
+	# bg %1
+	#
+
+hint_process_tree:
+	pstree
+
+hint_regex:
+	find . -name Makefile -exec grep -l docker '{}' \;
+	find . -name Makefile -exec grep -H docker '{}' \;	
+	find . -name Makefile -exec rg -H docker '{}' \;	
+
+hint_search:
+	# http://www.gnu.org/software/findutils/
+	# locate relies on `sudo updatedb` execution
+	locate zip | grep bin
+	# find ~
+	# find ~ | wc -l
+	# find ~ -type d | wc -l
+	# M: Megabytes, k: Kilobytes, G: Gigabytes, c: bytes, b: 512-byte blocks (default), w: 2-byte words
+	# find ~ -type f -name "*.JPG" -size +1M | wc -l
+	#
+	# find tests (read man page for all tests):
+	# -cmin n Match files or directories whose content or attributes were
+		# last modified exactly n minutes ago. To specify less than n
+		# minutes ago, use -n, and to specify more than n minutes
+		# ago, use +n.
+	# -cnewer file Match files or directories whose contents or attributes were
+		# last modified more recently than those of file.
+	# -ctime n Match files or directories whose contents or attributes were
+		# last modified n*24 hours ago.
+	# -empty Match empty files and directories.
+	# -group name Match file or directories belonging to group. group may
+		# be expressed either as a group name or as a numeric group
+		# ID.
+	# -iname pattern Like the -name test but case-insensitive.
+	# -inum n Match files with inode number n. This is helpful for finding
+		# all the hard links to a particular inode.
+	# 
+	# all the files with permissions that are not 0600 and the directories with permis-
+	#   sions that are not 0700
+	# find ~ \( -type f -not -perm 0600 \) -or \( -type d -not -perm 0700 \) 
+	# find ~ -type f -name 'foo*' -ok ls -l '{}' ';'
+	# stat filename
+
+hint_storage:
+	# mount, umount, fsck, fdisk, mkfs, dd, genisoimage, wodim, md5sum
+	# 
+	# A file named /etc/fstab (short for “file system table”) lists the devices (typically
+	#   hard disk partitions) that are to be mounted at boot time.
+	# cat /etc/fstab
+
+hint_vmstat:
+	vmstat 5
+
+hint_tload:
+	tload
+ 
+hint_process_signals:
+	# 2: INT: Interrupt (Ctrl-c)
+	# 9: KILL: Like TERM but program does not get any signal. Kernel just terminates
+	# 15: TERM: Terminate
+	# 18: CONT: Continue (This signal is sent by bg and fg commands)
+	# 19: STOP: Like TSTP but program does not get any signal. 
+	# 20: TSTP: Terminal Stop (Ctrl-z)
+	kill -l
 
 hint_permission:
 	# id, chmod, umask, su, sudo, chown, chgrp, passwd
@@ -232,7 +432,15 @@ hint_script:
 
 hint_set:
 	# shell set options
+	# display all functions
 	set | less
+
+hint_shutdown_10_minutes:
+	# sudo shutdown -h now
+	# sudo shutdown -h
+	sudo shutdown -h +10m &
+	# sudo shutdown -h 23:59
+	# sudo shutdown -c
 
 hint_superuser:
 	# su -
@@ -242,5 +450,8 @@ hint_superuser:
 	sudo -l
 hint_user:
 	# adduser addgroup
+
+end_of_file:
+	echo "bye"
 
 
