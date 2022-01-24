@@ -26,8 +26,22 @@ ubuntu-version-kernel:
 ubuntu-cpu-info:
 	less /proc/cpuinfo
 
+ubuntu-check-dictionary:
+	grep -i '^a...t$$' /usr/share/dict/american-english
+
 ubuntu-find-keybinding:
 	gsettings list-recursively | grep '<Control><Alt>' | less
+	# gsettings list-recursively org.gnome.desktop.wm.keybindings | sort
+	# org.gnome.desktop.wm.keybindings toggle-shaded ['<Control><Alt>s']
+	# gsettings set org.gnome.desktop.wm.keybindings toggle-shaded "['disabled']"
+
+ubuntu-list-keybindings:
+	# https://wiki.ubuntu.com/Keybindings
+	gsettings list-recursively org.gnome.desktop.wm.keybindings | less
+	gsettings list-recursively com.canonical.unity.settings-daemon.plugins.media-keys | less
+	gsettings list-recursively org.gnome.shell.keybindings | less
+	gsettings list-recursively org.gnome.settings-daemon.plugins.power | less
+	gsettings list-recursively org.gnome.Terminal.Legacy.Settings | less
 
 linux-proc:
 	# https://www.geeksforgeeks.org/proc-file-system-linux/
@@ -68,6 +82,9 @@ find-tools:
 	apropos email address
 	apropos partition
 	
+find-apps-that-support-regex:
+	zgrep -El 'regex|regular expression' /usr/share/man/man1/*.gz
+
 help:
 	# GNO Core Utils
 	info coreutils
@@ -126,6 +143,9 @@ list-environment-variables:
 
 list-large-files:
 	find ~ -type f -size +10M
+
+list-awkward-filenames:
+	find . -regex '.*[^-_./0-9a-zA-Z].*'
 
 list-list-commands:
 	apropos list
@@ -340,6 +360,7 @@ hint_search:
 	# http://www.gnu.org/software/findutils/
 	# locate relies on `sudo updatedb` execution
 	locate zip | grep bin
+	# locate --regex 'bin/(bz|gz|zip)'
 	# find ~
 	# find ~ | wc -l
 	# find ~ -type d | wc -l
@@ -448,6 +469,27 @@ hint_superuser:
 	# cat /etc/sudoers
 	# sudo command
 	sudo -l
+
+hint_text_processing:
+	# cat, sort, uniq, cut, paste, join, comm, diff, patch, tr, sed, aspell
+	# # print non-printing chars
+	# cat -A foo.txt
+	# # (s)uppress multiple blank lines and (n)umarate printed lines
+	# cat -ns foo.txt
+	# sort file1.txt file2.txt file3.txt > final_sorted_list.txt
+	# # sort by numeric value order in reverse
+	# du -s /usr/share/* | sort -nr | head
+	# # sort -k 5 ---> sorts by 5th column
+	# # sort by `:` delimited fields
+	# sort -t ':' -k 7 /etc/passwd | head
+	# # uniq removes duplicate lines if they are adjacent to each other so use `sort` first
+	# # cut -c 7-10 --> cut by char array
+	# # cut -f 3    --> cut by field number
+	# # cut -d delim --> cut by delimiter
+	# echo "lowercase letters" | tr a-z A-Z
+	# echo "front" | sed 's/front/back/'
+	# echo "front" | sed 's_front_back_'
+	# sed -n '1,5p' distros.txt
 hint_user:
 	# adduser addgroup
 
