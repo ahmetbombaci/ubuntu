@@ -114,12 +114,17 @@ list-installed-apps:
 	snap list
 	sudo apt list
 	pip3 list
+	npm ls -g
+	npm ls
 
 list-installed-app-names:
 	grep -R "Name=" ~/.local/share/applications
 	grep -R "Name=" /usr/share/applications
 	ls /snap
 	umake --list-installed
+
+list-c-libs:
+	ls /usr/include
 
 list-installed-packages:
 	dpkg -l
@@ -146,6 +151,10 @@ list-large-files:
 
 list-awkward-filenames:
 	find . -regex '.*[^-_./0-9a-zA-Z].*'
+
+list-converter-tools:
+	# such as ps2pdf
+	ls /usr/bin/*[[:alpha:]]2[[:alpha:]]*
 
 list-list-commands:
 	apropos list
@@ -490,6 +499,22 @@ hint_text_processing:
 	# echo "front" | sed 's/front/back/'
 	# echo "front" | sed 's_front_back_'
 	# sed -n '1,5p' distros.txt
+	# http://www.gnu.org/software/sed/manual/sed.html
+	# aspell check filename
+
+hint_formatting_output:
+	# nl, fold, fmt, pr, printf, groff
+	# nl distros.txt | head
+	echo {1..50} | fold -w 40 -s
+	# fmt -cw 50 fmt-info.txt
+	# pr -l 15 -w 65 distros.txt
+	# 
+	# https://docs.freebsd.org/44doc/usd/20.meref/paper.pdf
+	# zcat /usr/share/man/man1/ls.1.gz | groff -mandoc -T ascii | head
+	# zcat /usr/share/man/man1/ls.1.gz | groff -mandoc > ~/Desktop/ls.ps 
+	# ps2pdf ~/Desktop/foo.ps ~/Desktop/ls.pdf
+	# ls /usr/bin/*[[:alpha:]]2[[:alpha:]]*
+
 hint_user:
 	# adduser addgroup
 
