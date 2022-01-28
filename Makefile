@@ -35,6 +35,11 @@ ubuntu-find-keybinding:
 	# org.gnome.desktop.wm.keybindings toggle-shaded ['<Control><Alt>s']
 	# gsettings set org.gnome.desktop.wm.keybindings toggle-shaded "['disabled']"
 
+ubuntu-terminal-process-keybindings:
+	# i.e intr = ^C; quit = ^\; erase = ^?; kill = ^U; eof = ^D
+	# ... stop = ^S; susp = ^Z; 
+	stty -a
+
 ubuntu-list-keybindings:
 	# https://wiki.ubuntu.com/Keybindings
 	gsettings list-recursively org.gnome.desktop.wm.keybindings | less
