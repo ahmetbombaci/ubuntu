@@ -323,32 +323,6 @@ hint_history:
 	#      Ctrl-j: Copy history entry to current command line
 	#      Enter: Execute command
 
-hint_networking:
-	# http://tldp.org/LDP/nag2/index.html
-	# ping, traceroute, ip, netstat, ftp, sftp, wget, ssh, scp
-	ping -c 1 linuxcommand.org
-	# tracepath slashdot.org
-	ip a
-	# ip addresses
-	ip a | grep inet
-	# examine network interface
-	netstat -ie
-	# kernel's network routing table
-	netstat -r
-	# wget http://linuxcommand.org/index.php
-	ssh -V
-	# Let’s say we are sitting at a Linux system called lin-
-	# uxbox that is running an X server, and we want to run the xload program on a
-	# remote system named remote-sys to see the program’s graphical output on our
-	# local system. We could do this:
-	# ssh -X remote-sys
-	# xload
-	#
-	# scp bob@remote-sys:document.txt .
-	#
-	# An SSH Client for Windows?
-	# PuTTY is available at http://www.chiark.greenend.org.uk/~sgtatham/putty/
-
 hint_process:
 	# ps top jobs bg fg kill killall shutdown
 	# 
