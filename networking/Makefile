@@ -17,6 +17,9 @@ turn-on-off-interface:
 	# ifconfig eth0 down
 	# ifconfig eth0 up
 	# # MODERN WAY
+	#
+	# http://linux-ip.net/html/tools-ip-link.html
+	# https://www.cyberciti.biz/faq/linux-list-network-interfaces-names-command/
 	# ip link set eth0 down
 	# ip link set eth0 up
 

@@ -23,30 +23,55 @@ ubuntu-version-neofetch:
 ubuntu-version-kernel:
 	cat /proc/version
 
+ubuntu-display-server:
+	ps -e | grep tty
+	# 706 tty2     00:41:51 Xorg
+	# ps -e | grep X
+	# https://www.x.org/wiki/
+	# X11
+
+# Ref: https://askubuntu.com/questions/1234452/ubuntu-20-04-user-not-listed-to-login
+ubuntu-account-service-system-account:
+	sudo cat /var/lib/AccountsService/users/ahmet | grep SystemAccount
+
+systemctl-list-nordvpn-units:
+	systemctl list-unit-files | grep nordvpn
+
+ubuntu-display-manager:
+	systemctl status display-manager.service
+	# update display manager
+	# sudo dpkg-reconfigure gdm3
+
 ubuntu-cpu-info:
 	less /proc/cpuinfo
 
 ubuntu-check-dictionary:
 	grep -i '^a...t$$' /usr/share/dict/american-english
 
-ubuntu-find-keybinding:
-	gsettings list-recursively | grep '<Control><Alt>' | less
-	# gsettings list-recursively org.gnome.desktop.wm.keybindings | sort
-	# org.gnome.desktop.wm.keybindings toggle-shaded ['<Control><Alt>s']
-	# gsettings set org.gnome.desktop.wm.keybindings toggle-shaded "['disabled']"
-
 ubuntu-terminal-process-keybindings:
 	# i.e intr = ^C; quit = ^\; erase = ^?; kill = ^U; eof = ^D
 	# ... stop = ^S; susp = ^Z; 
 	stty -a
 
-ubuntu-list-keybindings:
+gnome-shell-version:
+	gnome-shell --version
+	# GNOME Shell 3.36.9
+	# apt-cache show gnome-shell | grep Version
+
+gnome-shell-list-keybindings:
 	# https://wiki.ubuntu.com/Keybindings
+	# https://wiki.gnome.org/Projects/GnomeShell/CheatSheet
 	gsettings list-recursively org.gnome.desktop.wm.keybindings | less
 	gsettings list-recursively com.canonical.unity.settings-daemon.plugins.media-keys | less
 	gsettings list-recursively org.gnome.shell.keybindings | less
 	gsettings list-recursively org.gnome.settings-daemon.plugins.power | less
 	gsettings list-recursively org.gnome.Terminal.Legacy.Settings | less
+
+gnome-shell-find-keybinding:
+	gsettings list-recursively | grep '<Control><Alt>' | less
+	# gsettings list-recursively org.gnome.desktop.wm.keybindings | sort
+	# org.gnome.desktop.wm.keybindings toggle-shaded ['<Control><Alt>s']
+	# gsettings set org.gnome.desktop.wm.keybindings toggle-shaded "['disabled']"
 
 linux-proc:
 	# https://www.geeksforgeeks.org/proc-file-system-linux/
@@ -133,6 +158,11 @@ list-c-libs:
 
 list-installed-packages:
 	dpkg -l
+
+list-installed-locally-packages:
+	# aka dpkg -i package_file
+	apt list | grep '\[installed,local\]'
+
 
 package-deb-install:
 	# low level package management tool for debian systems
