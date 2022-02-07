@@ -37,6 +37,11 @@ ubuntu-account-service-system-account:
 systemctl-list-nordvpn-units:
 	systemctl list-unit-files | grep nordvpn
 
+systemctl-enable-ulauncher:
+	# https://ulauncher.io/
+	# https://github.com/Ulauncher/Ulauncher/
+	systemctl --user enable --now ulauncher
+
 ubuntu-display-manager:
 	systemctl status display-manager.service
 	# update display manager
@@ -57,6 +62,12 @@ gnome-shell-version:
 	gnome-shell --version
 	# GNOME Shell 3.36.9
 	# apt-cache show gnome-shell | grep Version
+
+gnome-extension-list:
+	gnome-extensions list
+
+gnome-extension-directory:
+	cd ~/.local/share/gnome-shell/extensions
 
 gnome-shell-list-keybindings:
 	# https://wiki.ubuntu.com/Keybindings
@@ -206,6 +217,9 @@ list-routes:
 
 list-shells:
 	cat /etc/shells
+
+list=shell-commands:
+	compgen -s
 
 list-xinput:
 	xinput list
@@ -526,6 +540,16 @@ hint_formatting_output:
 
 hint_user:
 	# adduser addgroup
+
+hint_vlc:
+	# https://medium.com/@petehouston/use-vlc-to-play-camera-with-different-formats-17cf839b72d0
+	vlc v4l2://
+	# vlc v4l2://
+	# vlc v4l2:///dev/video0
+	# vlc v4l2:///dev/video0:chroma=h264
+	# vlc v4l2:///dev/video0:chroma=mjpg
+	# vlc v4l2:///dev/video0:chroma=mjpg --v4l2-width 800 --v4l2-height 600
+	# vlc v4l2:///dev/video0:chroma=mjpg:width=1280:height=720
 
 end_of_file:
 	echo "bye"
