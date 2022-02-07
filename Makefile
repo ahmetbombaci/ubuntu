@@ -218,7 +218,7 @@ list-routes:
 list-shells:
 	cat /etc/shells
 
-list=shell-commands:
+list-shell-commands:
 	compgen -s
 
 list-xinput:
@@ -551,7 +551,7 @@ hint_vlc:
 	# vlc v4l2:///dev/video0:chroma=mjpg --v4l2-width 800 --v4l2-height 600
 	# vlc v4l2:///dev/video0:chroma=mjpg:width=1280:height=720
 
-end_of_file:
+bye:
 	echo "bye"
 
 
