@@ -23,6 +23,16 @@ ubuntu-version-neofetch:
 ubuntu-version-kernel:
 	cat /proc/version
 
+# https://itsfoss.com/ppa-guide/
+ubuntu-add_repo:
+	#sudo add-apt-repository ppa:dr-akulavich/lighttable
+	#sudo apt-get update
+
+# https://itsfoss.com/how-to-remove-or-delete-ppas-quick-tip/
+ubuntu-remove-repo:
+	# via Software & Updates tool
+	# sudo add-apt-repository --remove ppa:PPA_Name/ppa
+
 ubuntu-display-server:
 	ps -e | grep tty
 	# 706 tty2     00:41:51 Xorg
@@ -108,6 +118,8 @@ linux-proc:
 	# /proc/version	containing the Linux kernel version, distribution number, gcc version number (used to build the kernel) 
 	#                and any other pertinent information relating to the version of the kernel currently running
 
+show_my_architecture:
+	uname -m
 
 ubuntu-version-kernel-uname:
 	uname -a 
@@ -177,7 +189,9 @@ list-installed-locally-packages:
 
 package-deb-install:
 	# low level package management tool for debian systems
+	# `sudo apt install ./download.deb` also works
 	dpkg -i package_file
+	# sudo apt-get install -f # Install dependencies
 
 package-identify:
 	dpkg -S file_name
@@ -446,6 +460,8 @@ hint_process_signals:
 
 hint_permission:
 	# id, chmod, umask, su, sudo, chown, chgrp, passwd
+	# See also https://linuxhandbook.com/linux-file-permissions/
+	# https://linuxhandbook.com/suid-sgid-sticky-bit/
 	id
 	# cat /etc/passwd
 	# cat /etc/group
