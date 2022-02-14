@@ -44,6 +44,11 @@ ubuntu-display-server:
 ubuntu-account-service-system-account:
 	sudo cat /var/lib/AccountsService/users/ahmet | grep SystemAccount
 
+ubuntu-desktop-links-hint:
+	desktop-file-validate /home/ahmet/.local/share/applications/me.mitya57.ReText.desktop
+	sudo update-desktop-database
+
+
 systemctl-list-nordvpn-units:
 	systemctl list-unit-files | grep nordvpn
 
