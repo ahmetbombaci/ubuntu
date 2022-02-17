@@ -1,0 +1,39 @@
+0ad
+balena-etcher-electron via "deb https://deb.etcher.io stable etcher"
+bash-completion
+cheese
+chuck
+cowsay
+curl
+fd-find
+flameshot
+google-chrome via "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+htop
+lolcat
+lshw
+lsof
+lynx
+make
+minidlna
+neofetch
+ripgrep
+rsync
+shellcheck
+stacer                          
+sublimetext via "deb https://download.sublimetext.com/ apt/stable/"
+synaptic
+system-monitoring-center "dpkg https://github.com/hakandundar34coding/system-monitoring-center"
+terminator 
+thunderbird
+tree                  
+tmux
+ulauncher via "dpkg https://ulauncher.io"
+vim
+vlc
+wget
+xplanet
+xterm
+zim
+zoom via "dpkg https://zoom.us/download#client_4meeting"
+zsh-syntax-highlighting
+zsh
