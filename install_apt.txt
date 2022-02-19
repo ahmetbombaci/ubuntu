@@ -3,8 +3,10 @@ balena-etcher-electron via "deb https://deb.etcher.io stable etcher"
 bash-completion
 cheese
 chuck
+conky-all
 cowsay
 curl
+dmenu
 fd-find
 flameshot
 google-chrome via "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
@@ -15,6 +17,7 @@ lsof
 lynx
 make
 minidlna
+mpv
 neofetch
 ripgrep
 rsync

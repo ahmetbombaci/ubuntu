@@ -6,11 +6,94 @@
 # See also https://cheatography.com/davechild/cheat-sheets/linux-command-line/
 # 
 
+.SILENT: help man
+
+#TODO : gsettings list-recursively org.gnome.desktop.wm.keybindings | \grep --color move-to-corner 
+
+
+
+##SECTION: Help tools, find tools
+
+help:
+	echo "man <command>"
+	echo "$$ man ls"
+	echo "------"
+	echo "info <gnu tool name>"
+	echo "$$ info coreutils"
+	echo "------"
+	echo "List docs folder"
+	echo "ls /usr/share/doc"
+	echo "------"
+	echo "<command> --help"
+	echo "$$ ls --help"
+	echo "------"
+	echo "Quick bash help"
+	echo "$$ help"
+	echo "------"
+	echo "help <command>"
+	echo "$$ help pwd"
+	echo "------"
+	echo "'which', 'type', 'file' discloses information about commands, aliases, file types etc"
+	echo "$$ which python"
+	echo "$$ type ls"
+	echo "$$ file ~/.bashrc"
+	echo "------"
+
+section-list:
+	grep -h '^##SECTION:' Makefile
+
+find-tools-list:
+	apropos list
+	# man -k list
+
+find-tools-compress:
+	apropos compress
+
+find-tools-email:
+	apropos email
+
+find-tools-email-address:
+	apropos email address
+
+find-tools-partition:
+	apropos partition
+	
+find-tools-that-support-regex:
+	zgrep -El 'regex|regular expression' /usr/share/man/man1/*.gz
+
+
+##SECTION: Hot Key, Key binding
+
+hotkey-tty:
+	# i.e intr = ^C; quit = ^\; erase = ^?; kill = ^U; eof = ^D
+	# ... stop = ^S; susp = ^Z; 
+	stty -a
+
+hotkey-wm:
+	gsettings list-recursively org.gnome.desktop.wm.keybindings | less
+
+hotkey-media:
+	gsettings list-recursively com.canonical.unity.settings-daemon.plugins.media-keys | less
+
+hotkey-gnome-shell:
+	gsettings list-recursively org.gnome.shell.keybindings | less
+
+hotkey-gnome-terminal-legacy:
+	gsettings list-recursively org.gnome.Terminal.Legacy.Settings | less
+
+hotkey-nemo:
+	gsettings list-recursively org.nemo | less
+
+hotkey-find:
+	gsettings list-recursively | grep '<Control><Alt>' | less
+
+##SECTION: Ubuntu, apt, dpkg
+
 ubuntu-support-status:
 	hwe-support-status --verbose
 	ubuntu-security-status
 
-ubuntu-version-release-etc:
+ubuntu-version-etc-os-release:
 	cat /etc/os-release
 
 ubuntu-version-release-info:
@@ -23,22 +106,61 @@ ubuntu-version-neofetch:
 ubuntu-version-kernel:
 	cat /proc/version
 
+ubuntu-apt-list-installed-locally-packages:
+	apt list | grep '\[installed,local\]'
+	
+ubuntu-apt-list-added-repos:
+	sudo grep -rhE ^deb /etc/apt/sources.list*
+	sudo apt-cache policy
+	# cat /etc/apt/sources.list
+	# ls /etc/apt/sources.list.d/
+
 # https://itsfoss.com/ppa-guide/
-ubuntu-add_repo:
-	#sudo add-apt-repository ppa:dr-akulavich/lighttable
-	#sudo apt-get update
+ubuntu-apt-add-repo:
+ifndef APT_REPO_URL
+	@echo "You must set APT_REPO_URL"
+	@echo "Usage: export APT_REPO_URL='ppa:domain/link' && make ubuntu-apt-add-repo"
+else
+	sudo add-apt-repository $$APT_REPO_URL
+	sudo apt-get update
+endif
 
 # https://itsfoss.com/how-to-remove-or-delete-ppas-quick-tip/
-ubuntu-remove-repo:
-	# via Software & Updates tool
-	# sudo add-apt-repository --remove ppa:PPA_Name/ppa
+# GUI Alternative: via "Software & Updates" --> "Other Software" tab
+ubuntu-apt-remove-repo:
+ifndef APT_REPO_URL
+	@echo "You must set APT_REPO_URL"
+	@echo "Usage: export APT_REPO_URL='ppa:domain/link' && make ubuntu-apt-remove-repo"
+else
+	sudo add-apt-repository --remove $$APT_REPO_URL
+	sudo apt-get update
+endif
 
-ubuntu-display-server:
-	ps -e | grep tty
-	# 706 tty2     00:41:51 Xorg
-	# ps -e | grep X
-	# https://www.x.org/wiki/
-	# X11
+
+debian-dpkg-install:
+	# low level package management tool for debian systems
+	# `sudo apt install ./download.deb` also works
+	# sudo apt-get install -f # Install dependencies
+	@echo "Usage: "
+	@echo "$$ dpkg -i package.deb"
+
+debian-dpkg-identify:
+	@echo "Usage: "
+	@echo "$$ dpkg -S package.deb"
+
+debian-dpkg-check-status:
+	@echo "Usage: "
+	@echo "$$ dpkg -s package_name"
+	@echo "Same as:"
+	@echo "$$ apt show package_name"
+
+debian-dpkg-list-installed-packages:
+	dpkg -l
+
+debian-dpkg-search-logs:
+	@echo "Usage: "
+	@echo "$$ debian-dpkg-search.logs.sh package_name"
+
 
 # Ref: https://askubuntu.com/questions/1234452/ubuntu-20-04-user-not-listed-to-login
 ubuntu-account-service-system-account:
@@ -48,30 +170,22 @@ ubuntu-desktop-links-hint:
 	desktop-file-validate /home/ahmet/.local/share/applications/me.mitya57.ReText.desktop
 	sudo update-desktop-database
 
+##SECTION: Display Server/Manager, Gnome Shell & extension
 
-systemctl-list-nordvpn-units:
-	systemctl list-unit-files | grep nordvpn
+# Sample output:
+#   10635 tty2     00:00:00 gdm-x-session
+#   10637 tty2     01:59:56 Xorg
+#   10650 tty2     00:00:00 gnome-session-b
+# https://www.x.org/wiki/
+# X11
+show-display-server:
+	ps -e | grep tty
 
-systemctl-enable-ulauncher:
-	# https://ulauncher.io/
-	# https://github.com/Ulauncher/Ulauncher/
-	systemctl --user enable --now ulauncher
-
-ubuntu-display-manager:
+show-display-manager:
 	systemctl status display-manager.service
 	# update display manager
 	# sudo dpkg-reconfigure gdm3
 
-ubuntu-cpu-info:
-	less /proc/cpuinfo
-
-ubuntu-check-dictionary:
-	grep -i '^a...t$$' /usr/share/dict/american-english
-
-ubuntu-terminal-process-keybindings:
-	# i.e intr = ^C; quit = ^\; erase = ^?; kill = ^U; eof = ^D
-	# ... stop = ^S; susp = ^Z; 
-	stty -a
 
 gnome-shell-version:
 	gnome-shell --version
@@ -87,90 +201,24 @@ gnome-extension-directory:
 gnome-shell-list-keybindings:
 	# https://wiki.ubuntu.com/Keybindings
 	# https://wiki.gnome.org/Projects/GnomeShell/CheatSheet
-	gsettings list-recursively org.gnome.desktop.wm.keybindings | less
-	gsettings list-recursively com.canonical.unity.settings-daemon.plugins.media-keys | less
-	gsettings list-recursively org.gnome.shell.keybindings | less
-	gsettings list-recursively org.gnome.settings-daemon.plugins.power | less
-	gsettings list-recursively org.gnome.Terminal.Legacy.Settings | less
+	gsettings list-recursively | less
 
-gnome-shell-find-keybinding:
-	gsettings list-recursively | grep '<Control><Alt>' | less
-	# gsettings list-recursively org.gnome.desktop.wm.keybindings | sort
+gnome-shell-list-schemas:
+	gsettings list-schemas
+
+gnome-shell-update-keybinding:
 	# org.gnome.desktop.wm.keybindings toggle-shaded ['<Control><Alt>s']
 	# gsettings set org.gnome.desktop.wm.keybindings toggle-shaded "['disabled']"
 
-linux-proc:
-	# https://www.geeksforgeeks.org/proc-file-system-linux/
-	# /proc/PID/cmdline	Command line arguments.
-	# /proc/PID/cpu	Current and last cpu in which it was executed.
-	# /proc/PID/cwd	Link to the current working directory.
-	# /proc/PID/environ	Values of environment variables.
-	# /proc/PID/exe	Link to the executable of this process.
-	# /proc/PID/fd	Directory, which contains all file descriptors.
-	# /proc/PID/maps	Memory maps to executables and library files.
-	# /proc/PID/mem	Memory held by this process.
-	# /proc/PID/root	Link to the root directory of this process.
-	# /proc/PID/stat	Process status.
-	# /proc/PID/statm	Process memory status information.
-	# /proc/PID/status	Process status in human readable form.
-	# /proc/crypto	list of available cryptographic modules
-	# /proc/diskstats	information (including device numbers) for each of the logical disk devices
-	# /proc/filesystems	list of the file systems supported by the kernel at the time of listing
-	# /proc/kmsg	holding messages output by the kernel
-	# /proc/meminfo	summary of how the kernel is managing its memory.
-	# /proc/scsi	information about any devices connected via a SCSI or RAID controller
-	# /proc/tty	information about the current terminals
-	# /proc/version	containing the Linux kernel version, distribution number, gcc version number (used to build the kernel) 
-	#                and any other pertinent information relating to the version of the kernel currently running
 
-show_my_architecture:
-	uname -m
-
-ubuntu-version-kernel-uname:
-	uname -a 
-	uname -r 
-	uname -p 
-	uname -i
-
-find-tools:
-	apropos list
-	# man -k list
-	apropos compress
-	apropos email
-	apropos email address
-	apropos partition
-	
-find-apps-that-support-regex:
-	zgrep -El 'regex|regular expression' /usr/share/man/man1/*.gz
-
-help:
-	# GNO Core Utils
-	info coreutils
-	# man ls
-	# file <filename>
-	# type ls
-	# which ls
-	# ls --help
-	# help
-	# help pwd
-	ls /usr/share/doc
+##SECTION: List things
 
 list-binaries:
-	ls /bin /usr/bin | sort | less
-	# TODO
-	# echo $PATH, split via `:`, list directories
-	# /home/ahmet/.local/share/umake/bin:/home/ahmet/bin:/home/ahmet/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-8-openjdk-amd64:/snap/bin
-
-
-list-installed-repos:
-	sudo grep -rhE ^deb /etc/apt/sources.list*
-	sudo apt-cache policy
-	# cat /etc/apt/sources.list
-	# ls /etc/apt/sources.list.d/
+	echo $$PATH | tr ":" " " | ls | sort | less 
 
 list-installed-apps:
 	snap list
-	sudo apt list
+	sudo apt list --installed
 	pip3 list
 	npm ls -g
 	npm ls
@@ -183,27 +231,6 @@ list-installed-app-names:
 
 list-c-libs:
 	ls /usr/include
-
-list-installed-packages:
-	dpkg -l
-
-list-installed-locally-packages:
-	# aka dpkg -i package_file
-	apt list | grep '\[installed,local\]'
-
-
-package-deb-install:
-	# low level package management tool for debian systems
-	# `sudo apt install ./download.deb` also works
-	dpkg -i package_file
-	# sudo apt-get install -f # Install dependencies
-
-package-identify:
-	dpkg -S file_name
-
-package-check-status:
-	# installed vs not installed vs ...
-	dpkg -s zoom
 
 list-environment-variables:
 	env
@@ -238,29 +265,19 @@ list-shells:
 	cat /etc/shells
 
 list-shell-commands:
-	compgen -s
+	bash -c "compgen -s"
 
 list-xinput:
 	xinput list
 
-display-default-bashrc:
-	cat /etc/skel/.bashrc 
 
-disk-space-free:
-	df
+##SECTION: Hardware commands
 
-disk-space-used:
-	du -hs ~
-	# du -h --max-depth 1
-	# du -h --max-depth 2 | grep -e "G" -e "M"
+hdw-show_my_architecture:
+	uname -m
 
-firewall-allow:
-	sudo ufw allow 1880
-
-firewall-deny:
-	sudo ufw deny 1880
-
-# Hardware commands
+hdw-cpu-info:
+	less /proc/cpuinfo
 
 hdw-laptop-version:
 	sudo dmidecode
@@ -278,14 +295,27 @@ hdw-xinput-enable-disable:
 	xinput --enable 19
 	# xinput --disable 19
 
-# hints
+uname-options:
+	# -a: print all info
+	uname -a 
+	# -r: print the kernel release
+	uname -r 
+	# -p: print the processor type (non-portable)
+	uname -p 
+	# -i: print the hardware platform (non-portable)
+	uname -i
+	# -m: print the machine hardware name
+	uname -m
+
+##SECTION: Hints
+
 # $(())
-hint_arithmetic_expansion:
+hint-arithmetic_expansion:
 	# +, -, *, /, %, **
 	echo $(((5**2) * 3))
 
 # {}
-hint_brace_expansion:
+hint-brace_expansion:
 	echo Front-{A,B,C}-Back
 	echo a{A{1,2},B{3,4}}b
 	echo Number_{1..5}
@@ -295,26 +325,30 @@ hint_brace_expansion:
 
 # $()
 # `` --> alternate syntax
-hint_command_substitution:
+hint-command-substitution:
 	ls -l $(which cp)
 	# ls -l `which cp`
 	file $(ls -d /usr/bin/* | grep zip)
 
-hint_cd:
+hint-cd:
 	# previous directory
 	cd -
 
-hint_cal:
+hint-cal:
 	# calendar
 	cal
-hint_cat:
+
+hint-cat:
 	# get input from stdio. Use Ctrl-d (EOF) to finish
 	cat
 	#
 	# concat all movie.mpeg files to a single mpeg file
 	# $ cat movie.mpeg.0* > movie.mpeg
 
-hint_compress:
+hint-check-dictionary:
+	grep -i '^a...t$$' /usr/share/dict/american-english
+
+hint-compress:
 	# http://www.gnu.org/software/tar/manual/index.html
 	# gzip, bzip2, tar, zip, rsync
 	# gzip filename
@@ -363,15 +397,28 @@ hint_compress:
 	# sudo rsync -av --delete /etc /home /usr/local /media/BigDisk/backup
 	# sudo rsync -av --delete --rsh=ssh /etc /home /usr/local remote-sys:/backup
 
-hint_date:
+hint-date:
 	date
 
-hint_escape_chars:
+hint-escape-chars:
 	echo "The balance for user $USER is: \$5.00"
 	# Escape $, !, &, spaces, and others
 	# mv bad\&filename good_filename
 
-hint_history:
+hint-formatting-output:
+	# nl, fold, fmt, pr, printf, groff
+	# nl distros.txt | head
+	echo {1..50} | fold -w 40 -s
+	# fmt -cw 50 fmt-info.txt
+	# pr -l 15 -w 65 distros.txt
+	# 
+	# https://docs.freebsd.org/44doc/usd/20.meref/paper.pdf
+	# zcat /usr/share/man/man1/ls.1.gz | groff -mandoc -T ascii | head
+	# zcat /usr/share/man/man1/ls.1.gz | groff -mandoc > ~/Desktop/ls.ps 
+	# ps2pdf ~/Desktop/foo.ps ~/Desktop/ls.pdf
+	# ls /usr/bin/*[[:alpha:]]2[[:alpha:]]*
+
+hint-history:
 	history | less
 	# Execute 88th command in history
 	# !88
@@ -386,7 +433,41 @@ hint_history:
 	#      Ctrl-j: Copy history entry to current command line
 	#      Enter: Execute command
 
-hint_process:
+hint-permission:
+	# id, chmod, umask, su, sudo, chown, chgrp, passwd
+	# See also https://linuxhandbook.com/linux-file-permissions/
+	# https://linuxhandbook.com/suid-sgid-sticky-bit/
+	id
+	# cat /etc/passwd
+	# cat /etc/group
+	# cat /etc/shadow
+	# passwd [user]
+
+hint-proc:
+	# https://www.geeksforgeeks.org/proc-file-system-linux/
+	# /proc/PID/cmdline	Command line arguments.
+	# /proc/PID/cpu	Current and last cpu in which it was executed.
+	# /proc/PID/cwd	Link to the current working directory.
+	# /proc/PID/environ	Values of environment variables.
+	# /proc/PID/exe	Link to the executable of this process.
+	# /proc/PID/fd	Directory, which contains all file descriptors.
+	# /proc/PID/maps	Memory maps to executables and library files.
+	# /proc/PID/mem	Memory held by this process.
+	# /proc/PID/root	Link to the root directory of this process.
+	# /proc/PID/stat	Process status.
+	# /proc/PID/statm	Process memory status information.
+	# /proc/PID/status	Process status in human readable form.
+	# /proc/crypto	list of available cryptographic modules
+	# /proc/diskstats	information (including device numbers) for each of the logical disk devices
+	# /proc/filesystems	list of the file systems supported by the kernel at the time of listing
+	# /proc/kmsg	holding messages output by the kernel
+	# /proc/meminfo	summary of how the kernel is managing its memory.
+	# /proc/scsi	information about any devices connected via a SCSI or RAID controller
+	# /proc/tty	information about the current terminals
+	# /proc/version	containing the Linux kernel version, distribution number, gcc version number (used to build the kernel) 
+	#                and any other pertinent information relating to the version of the kernel currently running
+
+hint-process:
 	# ps top jobs bg fg kill killall shutdown
 	# 
 	# Run xlogo as background process
@@ -399,15 +480,52 @@ hint_process:
 	# bg %1
 	#
 
-hint_process_tree:
+hint-process-signals:
+	# 2: INT: Interrupt (Ctrl-c)
+	# 9: KILL: Like TERM but program does not get any signal. Kernel just terminates
+	# 15: TERM: Terminate
+	# 18: CONT: Continue (This signal is sent by bg and fg commands)
+	# 19: STOP: Like TSTP but program does not get any signal. 
+	# 20: TSTP: Terminal Stop (Ctrl-z)
+	kill -l
+
+
+hint-process-tree:
 	pstree
 
-hint_regex:
+hint-quotes:
+	# double "...."
+	# If we place text inside double
+	# quotes, all the special characters used by the shell lose their special meaning and are
+	# treated as ordinary characters. The exceptions are $, \ (backslash), and ` (back-quote).
+	# This means that word-splitting, pathname expansion, tilde expansion, and brace expan-
+	# sion are suppressed, but parameter expansion, arithmetic expansion, and command sub-
+	# stitution are still carried out. Using double quotes, we can cope with filenames containing
+	# embedded spaces.
+	ls -l "two words.txt"
+	# single 'suppress all expansions'
+	# [me@linuxbox ~]$ echo text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+	# text /home/me/ls-output.txt a b foo 4 me
+	# [me@linuxbox ~]$ echo "text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER"
+	# text ~/*.txt {a,b} foo 4 me
+	# [me@linuxbox ~]$ echo 'text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER'
+	# text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+
+hint-redirection:
+	# cat, sort, uniq, grep, wc, head, tail, tee
+
+hint-regex:
 	find . -name Makefile -exec grep -l docker '{}' \;
 	find . -name Makefile -exec grep -H docker '{}' \;	
 	find . -name Makefile -exec rg -H docker '{}' \;	
 
-hint_search:
+hint-reset:
+	# reset current shell
+	reset
+	# clear
+	# Ctrl+L
+
+hint-search:
 	# http://www.gnu.org/software/findutils/
 	# locate relies on `sudo updatedb` execution
 	locate zip | grep bin
@@ -441,89 +559,48 @@ hint_search:
 	# find ~ -type f -name 'foo*' -ok ls -l '{}' ';'
 	# stat filename
 
-hint_storage:
+hint-set:
+	# shell set options
+	# display all functions
+	set | less
+
+hint-shutdown:
+	@echo "$$ sudo shutdown -h now"
+	@echo "$$ sudo shutdown -h"
+	@echo "$$ sudo shutdown -h +10m &"
+	@echo "$$ sudo shutdown -h 23:59"
+	@echo "$$ Cancel previous shutdown command"
+	@echo "$$ sudo shutdown -c"
+
+hint-storage:
 	# mount, umount, fsck, fdisk, mkfs, dd, genisoimage, wodim, md5sum
 	# 
 	# A file named /etc/fstab (short for “file system table”) lists the devices (typically
 	#   hard disk partitions) that are to be mounted at boot time.
 	# cat /etc/fstab
 
-hint_vmstat:
-	vmstat 5
+hint-sudo:
+	# Execute previous command with sudo
+	@echo "$$ sudo !!"
+	# echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
-hint_tload:
-	tload
- 
-hint_process_signals:
-	# 2: INT: Interrupt (Ctrl-c)
-	# 9: KILL: Like TERM but program does not get any signal. Kernel just terminates
-	# 15: TERM: Terminate
-	# 18: CONT: Continue (This signal is sent by bg and fg commands)
-	# 19: STOP: Like TSTP but program does not get any signal. 
-	# 20: TSTP: Terminal Stop (Ctrl-z)
-	kill -l
-
-hint_permission:
-	# id, chmod, umask, su, sudo, chown, chgrp, passwd
-	# See also https://linuxhandbook.com/linux-file-permissions/
-	# https://linuxhandbook.com/suid-sgid-sticky-bit/
-	id
-	# cat /etc/passwd
-	# cat /etc/group
-	# cat /etc/shadow
-	# passwd [user]
-
-hint_quotes:
-	# double "...."
-	# If we place text inside double
-	# quotes, all the special characters used by the shell lose their special meaning and are
-	# treated as ordinary characters. The exceptions are $, \ (backslash), and ` (back-quote).
-	# This means that word-splitting, pathname expansion, tilde expansion, and brace expan-
-	# sion are suppressed, but parameter expansion, arithmetic expansion, and command sub-
-	# stitution are still carried out. Using double quotes, we can cope with filenames containing
-	# embedded spaces.
-	ls -l "two words.txt"
-	# single 'suppress all expansions'
-	# [me@linuxbox ~]$ echo text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
-	# text /home/me/ls-output.txt a b foo 4 me
-	# [me@linuxbox ~]$ echo "text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER"
-	# text ~/*.txt {a,b} foo 4 me
-	# [me@linuxbox ~]$ echo 'text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER'
-	# text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
-
-hint_redirection:
-	# cat, sort, uniq, grep, wc, head, tail, tee
-
-hint_reset:
-	# reset current shell
-	reset
-	# clear
-
-hint_script:
-	# record entire shell session
-	# use `exit` to finish recording
-	script myrecordingname.script
-
-hint_set:
-	# shell set options
-	# display all functions
-	set | less
-
-hint_shutdown_10_minutes:
-	# sudo shutdown -h now
-	# sudo shutdown -h
-	sudo shutdown -h +10m &
-	# sudo shutdown -h 23:59
-	# sudo shutdown -c
-
-hint_superuser:
+hint-superuser:
 	# su -
 	# su -c 'command'
 	# cat /etc/sudoers
 	# sudo command
 	sudo -l
 
-hint_text_processing:
+
+hint-systemctl:
+	# systemctl list-unit-files | grep nordvpn
+	# https://ulauncher.io/
+	# https://github.com/Ulauncher/Ulauncher/
+	# systemctl --user enable --now ulauncher
+	# -p: reload config 
+	# echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+hint-text-processing:
 	# cat, sort, uniq, cut, paste, join, comm, diff, patch, tr, sed, aspell
 	# # print non-printing chars
 	# cat -A foo.txt
@@ -546,23 +623,19 @@ hint_text_processing:
 	# http://www.gnu.org/software/sed/manual/sed.html
 	# aspell check filename
 
-hint_formatting_output:
-	# nl, fold, fmt, pr, printf, groff
-	# nl distros.txt | head
-	echo {1..50} | fold -w 40 -s
-	# fmt -cw 50 fmt-info.txt
-	# pr -l 15 -w 65 distros.txt
-	# 
-	# https://docs.freebsd.org/44doc/usd/20.meref/paper.pdf
-	# zcat /usr/share/man/man1/ls.1.gz | groff -mandoc -T ascii | head
-	# zcat /usr/share/man/man1/ls.1.gz | groff -mandoc > ~/Desktop/ls.ps 
-	# ps2pdf ~/Desktop/foo.ps ~/Desktop/ls.pdf
-	# ls /usr/bin/*[[:alpha:]]2[[:alpha:]]*
+hint-tload:
+	# system load average
+	tload
+ 
+hint-vmstat:
+	# virtual memory stats every 5 seconds
+	vmstat 5
 
-hint_user:
+
+hint-user:
 	# adduser addgroup
 
-hint_vlc:
+hint-vlc:
 	# https://medium.com/@petehouston/use-vlc-to-play-camera-with-different-formats-17cf839b72d0
 	vlc v4l2://
 	# vlc v4l2://
@@ -571,6 +644,37 @@ hint_vlc:
 	# vlc v4l2:///dev/video0:chroma=mjpg
 	# vlc v4l2:///dev/video0:chroma=mjpg --v4l2-width 800 --v4l2-height 600
 	# vlc v4l2:///dev/video0:chroma=mjpg:width=1280:height=720
+
+
+##SECTION: Disk, Firewall, Settings, Others
+
+disk-space-free:
+	df -h
+
+disk-space-used:
+	du -hs ~
+	# du -h --max-depth 1
+	# du -h --max-depth 2 | grep -e "G" -e "M"
+
+display-default-bashrc:
+	cat /etc/skel/.bashrc 
+
+firewall-allow:
+	sudo ufw allow 1880
+
+firewall-deny:
+	sudo ufw deny 1880
+
+power-settings:
+	gsettings list-recursively org.gnome.settings-daemon.plugins.power | less
+
+record-shell-session:
+	# record entire shell session
+	# use `exit` to finish recording
+	script myrecordingname.script
+
+unity-settings:
+	gsettings list-recursively | grep com.canonical.unity
 
 bye:
 	echo "bye"
