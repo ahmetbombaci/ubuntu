@@ -22,7 +22,7 @@ Delete everything older than 3 days: `sudo journalctl --vacuum-time=3d`
 `du -h /var/lib/snapd/snaps`
 
 
-`sudo ./remove-old-snap-versions.sh`
+`sudo remove-old-snap-versions.sh`
 
 
 # Clean the thumbnail cache

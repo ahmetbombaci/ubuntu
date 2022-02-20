@@ -8,11 +8,10 @@
 
 .SILENT: help man
 
-#TODO : gsettings list-recursively org.gnome.desktop.wm.keybindings | \grep --color move-to-corner 
-
-
-
 ##SECTION: Help tools, find tools
+
+list:
+	@grep '^[^#[:space:]].*:' ~/github/ubuntu/Makefile | sort | less
 
 help:
 	echo "man <command>"
@@ -40,7 +39,7 @@ help:
 	echo "------"
 
 section-list:
-	grep -h '^##SECTION:' Makefile
+	grep -h '^##SECTION:' ~/github/ubuntu/Makefile
 
 find-tools-list:
 	apropos list
