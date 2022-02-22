@@ -6,7 +6,7 @@ chuck
 conky-all
 cowsay
 curl
-dmenu
+exa via "deb http://ftp.us.debian.org/debian sid main" aka "debian unstable"
 fd-find
 flameshot
 google-chrome via "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
@@ -24,6 +24,7 @@ rsync
 shellcheck
 stacer                          
 sublimetext via "deb https://download.sublimetext.com/ apt/stable/"
+suckless-tools (aka dmenu)
 synaptic
 system-monitoring-center "dpkg https://github.com/hakandundar34coding/system-monitoring-center"
 terminator 

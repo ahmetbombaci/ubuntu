@@ -114,6 +114,23 @@ ubuntu-apt-list-added-repos:
 	# cat /etc/apt/sources.list
 	# ls /etc/apt/sources.list.d/
 
+ubuntu-apt-force-update-from-unsigned-repo:
+	# https://askubuntu.com/questions/732985/force-update-from-unsigned-repository
+	# W: GPG error: http://www.deb-multimedia.org jessie InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 5C808C2B65558117
+	# sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5C808C2B65558117
+
+ubuntu-apt-show-available-versions:
+	# previously --> apt-cache madison libc6
+	apt list -a libc6
+
+ubuntu-apt-download:
+	# Useful to recover from circular dependency issue.
+	apt download libc6=2.31-0ubuntu9.2
+	# dpkg -i libc6_2.31-0ubuntu9.2_amd64.deb
+
+ubuntu-apt-install-specific-version:
+	# sudo apt-get install <package-name>=<package-version-number>
+
 # https://itsfoss.com/ppa-guide/
 ubuntu-apt-add-repo:
 ifndef APT_REPO_URL

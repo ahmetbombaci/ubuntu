@@ -16,5 +16,4 @@ slack
 spotify  
 supertuxkart                       
 telegram-desktop
-youtube-dl                         
 
