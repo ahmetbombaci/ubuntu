@@ -7,11 +7,15 @@ conky-all
 cowsay
 cpu-checker
 curl
-exa via "deb http://ftp.us.debian.org/debian sid main" aka "debian unstable"
+# exa upgraded libc6 version which broke mpv so I uninstalled
+!!! exa via "deb http://ftp.us.debian.org/debian sid main" aka "debian unstable"
 fd-find
 flameshot
 google-chrome via "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
 htop
+# https://developer.android.com/studio/install
+# 32 bits libraries needed for android studio
+libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
 lolcat
 lshw
 lsof
