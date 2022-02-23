@@ -1,0 +1,4 @@
+Android Studio:
+- https://developer.android.com/studio
+- Extract to `/usr/local`
+- Execute /usr/local/android-studio/bin/studio.sh
