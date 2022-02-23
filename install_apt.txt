@@ -5,6 +5,7 @@ cheese
 chuck
 conky-all
 cowsay
+cpu-checker
 curl
 exa via "deb http://ftp.us.debian.org/debian sid main" aka "debian unstable"
 fd-find
@@ -19,6 +20,8 @@ make
 minidlna
 mpv
 neofetch
+# https://help.ubuntu.com/community/KVM/Installation
+qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils (VM acceleration on Linux)
 ripgrep
 rsync
 shellcheck
@@ -32,6 +35,7 @@ thunderbird
 tree                  
 tmux
 ulauncher via "dpkg https://ulauncher.io"
+virt-manager
 vim
 vlc
 wget
