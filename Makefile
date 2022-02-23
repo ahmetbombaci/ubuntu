@@ -449,6 +449,41 @@ hint-history:
 	#      Ctrl-j: Copy history entry to current command line
 	#      Enter: Execute command
 
+hint-linux-directories:
+
+	# /bin: Contains binaries (programs) that must be present for the
+	# system to boot and run.
+	# 
+	# /boot: Contains the Linux kernel, initial RAM disk image (for
+	# drivers needed at boot time), and the boot loader.
+	# 
+	# /dev: This is a special directory that contains device nodes.
+	# “Everything is a file” also applies to devices. Here is where
+	# the kernel maintains a list of all the devices it understands.
+	# 
+	# /etc: /etc directory contains all of the system-wide
+	# configuration files. It also contains a collection of shell
+	# scripts that start each of the system services at boot time.
+	# Everything in this directory should be readable text.
+	# 
+	# /etc/fstab: a table of storage devices and their associated mount points
+	# `blkid`
+	# 
+	# /etc/passwd: a list of the user accounts.
+	# 
+	# /usr/bin: /usr/bin contains the executable programs installed by
+	# the Linux distribution. It is not uncommon for this directory
+	# to hold thousands of programs.
+	# 
+	# /usr/share: /usr/share contains all the shared data used by
+	# programs in /usr/bin. This includes things such as
+	# default configuration files, icons, screen backgrounds, sound
+	# files, etc.
+	# 
+	# /usr/share/doc: Most packages installed on the system will include some
+	# kind of documentation. In /usr/share/doc, we will find
+	# documentation files organized by package.
+
 hint-permission:
 	# id, chmod, umask, su, sudo, chown, chgrp, passwd
 	# See also https://linuxhandbook.com/linux-file-permissions/
