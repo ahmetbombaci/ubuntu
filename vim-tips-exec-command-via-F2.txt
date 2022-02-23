@@ -1,0 +1,10 @@
+
+Press F2 to execute commands:
+
+:!ls
+:!echo "Hello \!"
+
+Thanks to .vimrc definition:
+
+nnoremap <F2> :exe getline(".")<CR>
+

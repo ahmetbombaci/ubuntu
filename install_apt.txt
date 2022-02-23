@@ -39,6 +39,7 @@ thunderbird
 tree                  
 tmux
 ulauncher via "dpkg https://ulauncher.io"
+vifm
 virt-manager
 vim
 vlc

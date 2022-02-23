@@ -2,3 +2,5 @@ Android Studio:
 - https://developer.android.com/studio
 - Extract to `/usr/local`
 - Execute /usr/local/android-studio/bin/studio.sh
+- Desktop shortcut can be generated from the app later: Tools -> Create Desktop Entry
+
