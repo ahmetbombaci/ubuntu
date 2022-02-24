@@ -1,5 +1,15 @@
 My personal notes about my Ubuntu environment, bash, and gnome utils.
 
+# Dell Bios
+
+F2
+
+
+# Start X Session
+
+Ctrl + Alt + F2
+
+
 # Always on Top
 
 "Alt + Space" bring up the system menu for the frameless window. 
