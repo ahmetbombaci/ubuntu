@@ -1,4 +1,5 @@
 0ad
+asciiart
 balena-etcher-electron via "deb https://deb.etcher.io stable etcher"
 bash-completion
 cheese

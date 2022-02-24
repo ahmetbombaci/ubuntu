@@ -740,6 +740,10 @@ update-alternatives-add-new-option:
 update-alternatives-window-manager:
 	sudo update-alternatives --config x-window-manager
 
+update-wm:
+	# sudo dpkg-reconfigure lightdm
+	# sudo dpkg-reconfigure gdm3
+
 bye:
 	echo "bye"
 
