@@ -11,6 +11,7 @@ curl
 !!! exa via "deb http://ftp.us.debian.org/debian sid main" aka "debian unstable"
 fd-find
 flameshot
+fzf
 google-chrome via "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
 htop
 # https://developer.android.com/studio/install

@@ -727,6 +727,9 @@ record-shell-session:
 unity-settings:
 	gsettings list-recursively | grep com.canonical.unity
 
+update-alternatives-window-manager:
+	sudo update-alternatives --config x-window-manager
+
 bye:
 	echo "bye"
 
