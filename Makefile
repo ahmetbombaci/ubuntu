@@ -727,6 +727,16 @@ record-shell-session:
 unity-settings:
 	gsettings list-recursively | grep com.canonical.unity
 
+update-alternatives-list-selections:
+	sudo update-alternatives --get-selections
+
+update-alternatives-add-new-option:
+	# Probably the following file can be updated manually as well:
+	# cat /var/lib/dpkg/alternatives/x-www-browser
+	#
+	# The following seems to be the official way:
+	# sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /snap/bin/brave 90
+
 update-alternatives-window-manager:
 	sudo update-alternatives --config x-window-manager
 
