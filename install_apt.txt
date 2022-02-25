@@ -14,6 +14,8 @@ fd-find
 flameshot
 fzf
 google-chrome via "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+gnome-shell-extensions
+gnome-tweak-tool
 htop
 # https://developer.android.com/studio/install
 # 32 bits libraries needed for android studio
@@ -30,6 +32,7 @@ neofetch
 qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils (VM acceleration on Linux)
 ripgrep
 rsync
+sddm
 shellcheck
 stacer                          
 sublimetext via "deb https://download.sublimetext.com/ apt/stable/"
@@ -38,6 +41,7 @@ synaptic
 system-monitoring-center "dpkg https://github.com/hakandundar34coding/system-monitoring-center"
 terminator 
 thunderbird
+touchegg via "ppa:touchegg/stable"
 tree                  
 tmux
 ulauncher via "dpkg https://ulauncher.io"

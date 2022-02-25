@@ -743,6 +743,7 @@ update-alternatives-window-manager:
 update-wm:
 	# sudo dpkg-reconfigure lightdm
 	# sudo dpkg-reconfigure gdm3
+	# sudo dpkg-reconfigure sddm
 
 bye:
 	echo "bye"
