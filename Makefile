@@ -745,6 +745,12 @@ update-wm:
 	# sudo dpkg-reconfigure gdm3
 	# sudo dpkg-reconfigure sddm
 
+xscreensaver-deactivate:
+	xscreensaver-command -deactivate
+
+xscreensaver-activate:
+	xscreensaver-command -activate
+
 bye:
 	echo "bye"
 

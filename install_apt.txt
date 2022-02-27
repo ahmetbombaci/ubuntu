@@ -51,6 +51,8 @@ vim
 vlc
 wget
 xplanet
+# https://www.debugpoint.com/2018/08/install-change-autostart-setup-screensaver-ubuntu-linux/
+xscreensaver xscreensaver-gl-extra xscreensaver-data-extra
 xterm
 zim
 zoom via "dpkg https://zoom.us/download#client_4meeting"

@@ -2,3 +2,4 @@ cryptonice
 Pygments
 ReText
 youtube-dl
+yt-dlp

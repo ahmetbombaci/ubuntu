@@ -5,6 +5,7 @@ chromium
 chromium-ffmpeg                    
 discord                            
 duf-utility                        
+gradle
 intellij-idea-community            
 keepassxc                          
 krita                              
