@@ -1,10 +1,12 @@
 alacritty                          
+androidsdk
 atom                               
 brave                              
 chromium                           
 chromium-ffmpeg                    
 discord                            
 duf-utility                        
+flutter --classic
 gradle
 intellij-idea-community            
 keepassxc                          

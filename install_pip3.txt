@@ -1,4 +1,5 @@
 cryptonice
+pychromecast
 Pygments
 ReText
 youtube-dl

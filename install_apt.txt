@@ -4,19 +4,25 @@ balena-etcher-electron via "deb https://deb.etcher.io stable etcher"
 bash-completion
 cheese
 chuck
+# flutter: https://docs.flutter.dev/get-started/install/linux
+clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
 conky-all
 cowsay
 cpu-checker
 curl
 # exa upgraded libc6 version which broke mpv so I uninstalled
 !!! exa via "deb http://ftp.us.debian.org/debian sid main" aka "debian unstable"
+digikam
 fd-find
 flameshot
 fzf
+gimp
+git
 google-chrome via "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
 gnome-shell-extensions
 gnome-tweak-tool
 htop
+iftop
 # https://developer.android.com/studio/install
 # 32 bits libraries needed for android studio
 libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
@@ -28,6 +34,9 @@ make
 minidlna
 mpv
 neofetch
+neovim
+ntop
+python3-pip
 # https://help.ubuntu.com/community/KVM/Installation
 qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils (VM acceleration on Linux)
 ripgrep

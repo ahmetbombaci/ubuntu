@@ -751,6 +751,11 @@ xscreensaver-deactivate:
 xscreensaver-activate:
 	xscreensaver-command -activate
 
+kvm-find-ip-address-of-linux-kvm-guest-virtual-machine:
+	virsh net-list
+	virsh net-info default
+	virsh net-dhcp-leases default
+
 bye:
 	echo "bye"
 

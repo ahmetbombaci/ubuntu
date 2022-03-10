@@ -38,6 +38,15 @@ list-wifi-interface:
 whatismy-ip-address:
 	ip -4 a show wlp1s0 | grep inet
 
+wifi-current-setup:
+	sudo iwconfig
+
+wifi-scan:
+	sudo iwlist wlan1 scan | grep ESSID
+
+wifi-connect:
+	nmcli d wifi connect 19E728  password SECRET_PASSWORD
+
 hint_networking:
 	# http://tldp.org/LDP/nag2/index.html
 	# ping, traceroute, ip, netstat, ftp, sftp, wget, ssh, scp
@@ -117,3 +126,6 @@ iptable-filtertable:
 
 iptable-nat-table:
 	sudo iptables -t nat -L
+
+scan-ports:
+	sudo nmap -O 192.168.0.2 
