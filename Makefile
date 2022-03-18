@@ -86,6 +86,9 @@ hotkey-nemo:
 hotkey-find:
 	gsettings list-recursively | grep '<Control><Alt>' | less
 
+hotkey-tmux:
+	echo 'Press <Control>a, then ?'
+
 ##SECTION: Ubuntu, apt, dpkg
 
 ubuntu-support-status:
