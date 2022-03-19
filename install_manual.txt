@@ -4,3 +4,5 @@ Android Studio:
 - Execute /usr/local/android-studio/bin/studio.sh
 - Desktop shortcut can be generated from the app later: Tools -> Create Desktop Entry
 
+Doom Emacs:
+- https://github.com/hlissner/doom-emacs#install

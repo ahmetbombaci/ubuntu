@@ -14,6 +14,7 @@ curl
 # exa upgraded libc6 version which broke mpv so I uninstalled
 !!! exa via "deb http://ftp.us.debian.org/debian sid main" aka "debian unstable"
 digikam
+emacs27 (via ppa:kelleyk/emacs)
 fd-find
 flameshot
 flatpak
@@ -37,6 +38,7 @@ minidlna
 mpv
 neofetch
 neovim
+node-typescript
 ntop
 python3-pip
 # https://help.ubuntu.com/community/KVM/Installation
