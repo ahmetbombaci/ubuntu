@@ -6,3 +6,12 @@ Android Studio:
 
 Doom Emacs:
 - https://github.com/hlissner/doom-emacs#install
+
+wtfutil:
+- https://wtfutil.com/installation/
+- https://github.com/wtfutil/wtf/releases
+
+reddio:
+- https://gitlab.com/aaronNG/reddio
+- sudo make install
+

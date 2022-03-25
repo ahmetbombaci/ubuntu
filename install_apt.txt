@@ -3,6 +3,7 @@ asciiart
 app-outlet (via dpkg https://app-outlet.github.io/)
 balena-etcher-electron via "deb https://deb.etcher.io stable etcher"
 bash-completion
+cargo
 cheese
 chuck
 # flutter: https://docs.flutter.dev/get-started/install/linux
