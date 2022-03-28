@@ -1,6 +1,5 @@
 0ad
 asciiart
-app-outlet (via dpkg https://app-outlet.github.io/)
 balena-etcher-electron via "deb https://deb.etcher.io stable etcher"
 bash-completion
 cargo
@@ -54,13 +53,11 @@ stacer
 sublimetext via "deb https://download.sublimetext.com/ apt/stable/"
 suckless-tools (aka dmenu)
 synaptic
-system-monitoring-center "dpkg https://github.com/hakandundar34coding/system-monitoring-center"
 terminator 
 thunderbird
 touchegg via "ppa:touchegg/stable"
 tree                  
 tmux
-ulauncher via "dpkg https://ulauncher.io"
 vifm
 virt-manager
 vim
@@ -69,6 +66,5 @@ wget
 xplanet
 xterm
 zim
-zoom via "dpkg https://zoom.us/download#client_4meeting"
 zsh-syntax-highlighting
 zsh

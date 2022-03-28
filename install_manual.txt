@@ -4,17 +4,25 @@ Android Studio:
 - Execute /usr/local/android-studio/bin/studio.sh
 - Desktop shortcut can be generated from the app later: Tools -> Create Desktop Entry
 
+app-outlet (via dpkg https://app-outlet.github.io/)
+
 Doom Emacs:
 - https://github.com/hlissner/doom-emacs#install
 
-wtfutil:
-- https://wtfutil.com/installation/
-- https://github.com/wtfutil/wtf/releases
+nala:
+- https://salsa.debian.org/volian-team/nala
+- https://gitlab.com/volian/nala/-/releases
 
 reddio:
 - https://gitlab.com/aaronNG/reddio
 - sudo make install
 
-nala:
-- https://salsa.debian.org/volian-team/nala
-- https://gitlab.com/volian/nala/-/releases
+system-monitoring-center "dpkg https://github.com/hakandundar34coding/system-monitoring-center"
+
+ulauncher via "dpkg https://ulauncher.io"
+
+wtfutil:
+- https://wtfutil.com/installation/
+- https://github.com/wtfutil/wtf/releases
+
+zoom via "dpkg https://zoom.us/download#client_4meeting"
