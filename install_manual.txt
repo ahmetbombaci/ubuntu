@@ -15,3 +15,6 @@ reddio:
 - https://gitlab.com/aaronNG/reddio
 - sudo make install
 
+nala:
+- https://salsa.debian.org/volian-team/nala
+- https://gitlab.com/volian/nala/-/releases

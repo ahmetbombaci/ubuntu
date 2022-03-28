@@ -1,0 +1,5 @@
+flatpak install flathub <application.url>
+flatpak run <application.url>
+
+com.github.maoschanz.drawing
+
