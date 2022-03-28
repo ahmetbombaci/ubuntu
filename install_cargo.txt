@@ -1,2 +1,9 @@
+
+# install dependencies
+# https://github.com/alacritty/alacritty/blob/master/INSTALL.md#debianubuntu
+# sudo apt-get install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+# post build
+# https://github.com/alacritty/alacritty/blob/master/INSTALL.md#post-build
+alacritty
 # https://github.com/nexxeln/license-generator
 gen-license
