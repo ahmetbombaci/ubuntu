@@ -29,6 +29,10 @@ iftop
 # https://developer.android.com/studio/install
 # 32 bits libraries needed for android studio
 libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+# pico2wave
+libtool
+libvterm-dev
+libttspico-utils sox
 lolcat
 lshw
 lsof
@@ -36,10 +40,13 @@ lynx
 make
 minidlna
 mpv
+# See also https://beucismis.github.io/awesome-fetch/
 neofetch
 neovim
 node-typescript
 ntop
+# https://www.passwordstore.org/
+pass
 python3-pip
 # https://help.ubuntu.com/community/KVM/Installation
 qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils (VM acceleration on Linux)
@@ -48,6 +55,7 @@ rsync
 # https://jekyllrb.com/docs/installation/ubuntu/
 ruby-full build-essential zlib1g-dev
 sddm
+sshfs
 shellcheck
 stacer                          
 sublimetext via "deb https://download.sublimetext.com/ apt/stable/"
@@ -55,6 +63,7 @@ suckless-tools (aka dmenu)
 synaptic
 terminator 
 thunderbird
+# https://github.com/JoseExposito/gnome-shell-extension-x11gestures
 touchegg via "ppa:touchegg/stable"
 tree                  
 tmux
@@ -62,6 +71,7 @@ vifm
 virt-manager
 vim
 vlc
+vlc-plugin-bittorrent
 wget
 xplanet
 xterm

@@ -5,5 +5,7 @@
 # post build
 # https://github.com/alacritty/alacritty/blob/master/INSTALL.md#post-build
 alacritty
+# https://github.com/Wilfred/difftastic
+difftastic
 # https://github.com/nexxeln/license-generator
 gen-license

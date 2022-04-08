@@ -2,4 +2,7 @@ flatpak install flathub <application.url>
 flatpak run <application.url>
 
 com.github.maoschanz.drawing
-
+# ambient sound
+com.rafaelmardojai.Blanket
+# radio
+de.haeckerfelix.Shortwave
