@@ -51,6 +51,7 @@ python3-pip
 # https://help.ubuntu.com/community/KVM/Installation
 qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils (VM acceleration on Linux)
 ripgrep
+rofi
 rsync
 # https://jekyllrb.com/docs/installation/ubuntu/
 ruby-full build-essential zlib1g-dev
