@@ -13,6 +13,11 @@ nala:
 - https://salsa.debian.org/volian-team/nala
 - https://gitlab.com/volian/nala/-/releases
 
+nsxiv:
+- https://github.com/nsxiv/nsxiv
+- sudo apt install libimlib2-dev
+- sudo make HAVE_LIBEXIF=0 install-all
+
 reddio:
 - https://gitlab.com/aaronNG/reddio
 - sudo make install

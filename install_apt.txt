@@ -24,11 +24,14 @@ git
 google-chrome via "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
 gnome-shell-extensions
 gnome-tweak-tool
+groff
 htop
 iftop
 # https://developer.android.com/studio/install
 # 32 bits libraries needed for android studio
 libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+# https://github.com/nsxiv/nsxiv
+libimlib2-dev
 # pico2wave
 libtool
 libvterm-dev
