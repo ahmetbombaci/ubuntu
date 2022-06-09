@@ -58,6 +58,7 @@ rofi
 rsync
 # https://jekyllrb.com/docs/installation/ubuntu/
 ruby-full build-essential zlib1g-dev
+rustc
 sddm
 sshfs
 shellcheck

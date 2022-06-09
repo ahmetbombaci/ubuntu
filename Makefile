@@ -407,6 +407,8 @@ hint-compress:
 	# ssh remote-sys 'tar cf - Documents' | tar xf -
 	#
 	# zip / unzip: the main use of these programs is for exchanging files with Windows systems
+	# Password protected zip:
+	# zip -re output_file.zip file1 folder1
 	#
 	# rsync -av source destination
 	# # `source/` will copy contents of source directory
