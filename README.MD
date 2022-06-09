@@ -29,6 +29,9 @@ Update `/etc/hosts.allow` in order to allow local network access:
 ALL: LOCAL
 ```
 
+Update `/etc/hosts` with [this](https://someonewhocares.org/hosts/zero/hosts)
+
+
 # Wallpapers
 
 * https://gitlab.com/dwt1/wallpapers

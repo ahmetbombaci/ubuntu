@@ -12,8 +12,10 @@ keepassxc
 krita                              
 nuclear                            
 opera                              
-pinta                              
+pinta
+poddr
 postman                            
+raven-reader
 slack                              
 spotify  
 supertuxkart                       
