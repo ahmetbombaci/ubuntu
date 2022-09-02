@@ -1,5 +1,4 @@
 androidsdk
-atom                               
 brave                              
 chromium                           
 chromium-ffmpeg                    
@@ -7,7 +6,7 @@ discord
 duf-utility                        
 flutter --classic
 gradle
-intellij-idea-community            
+intellij-idea-community --classic           
 keepassxc                          
 krita                              
 nuclear                            
@@ -20,4 +19,4 @@ slack
 spotify  
 supertuxkart                       
 telegram-desktop
-
+yq

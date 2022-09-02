@@ -4,4 +4,3 @@ Pygments
 ReText
 youtube-dl
 yt-dlp
-yq

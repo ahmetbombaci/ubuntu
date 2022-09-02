@@ -1,0 +1,187 @@
+categories:
+  - browser
+  - editor
+  - email
+  - file-manager
+  - fun
+  - game
+  - language
+  - media
+  - music
+  - picture
+  - video
+  - virtual
+  - util
+key-list:
+  - name             # mandatory package name
+  - category         # mandatory category
+  - cli-command      # optional cli-command in case package name is different
+  - post-install     # optional post installation steps
+  - ppa              # optional personal package archive information for apt in case 
+                     #   it is not coming from default repository
+  - summary          # optional short explanation
+  - url              # optional project url
+  - used-for         # optional dependency information
+
+myapps:
+  - apt:
+# TODO: later and then apt part is done
+## # flutter: https://docs.flutter.dev/get-started/install/linux
+## clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
+## # exa upgraded libc6 version which broke mpv so I uninstalled
+## !!! exa via "deb http://ftp.us.debian.org/debian sid main" aka "debian unstable"
+## # https://developer.android.com/studio/install
+## # 32 bits libraries needed for android studio
+## libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+## # https://github.com/nsxiv/nsxiv
+## libimlib2-dev
+## # pico2wave
+## libtool
+## # See also https://beucismis.github.io/awesome-fetch/
+## neofetch
+## # https://www.passwordstore.org/
+## pass
+## # https://help.ubuntu.com/community/KVM/Installation
+## qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils (VM acceleration on Linux)
+## # https://jekyllrb.com/docs/installation/ubuntu/
+## ruby-full build-essential zlib1g-dev
+## rustc
+    - name: 0ad
+      category: game
+    - name: asciicart
+      category: fun
+    - name: balena-etcher-electron 
+      category: util
+      ppa: deb https://deb.etcher.io stable etcher
+    - name: bash-completion
+      category: util
+    - name: cargo
+      category: util
+    - name: cheese
+      category: picture
+    - name: chuck
+      category: fun
+    - name: conky-all
+      category: util
+    - name: cowsay
+      category: fun
+    - name: cpu-checker
+      category: util
+    - name: curl
+      category: util
+    - name: digikam
+      category: picture
+    - name: emacs27
+      category: editor
+      ppa: ppa:kelleyk/emacs
+    - name: fd-find
+      category: util
+    - name: flameshot
+      category: util
+    - name: flatpak
+      category: util
+    - name: fzf
+      category: util
+    - name: gimp
+      category: picture
+    - name: git
+      category: util
+    - name: google-chrome
+      category: browser
+      ppa: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+    - name: gnome-shell-extensions
+      category: util
+    - name: gnome-tweak-tool
+      category: util
+    - name: groff
+      category: choose
+    - name: htop
+      category: util
+    - name: iftop
+      category: util
+    - name: libvterm-dev
+      category: util
+    - name: libttspico-utils
+      category: util
+    - name: lolcat
+      category: fun
+    - name: lshw
+      category: util
+    - name: lsof
+      category: util
+    - name: lynx
+      category: browser
+    - name: make
+      category: util
+    - name: minidlna
+      category: media
+    - name: mpv
+      category: music
+    - name: neovim
+      category: editor
+    - name: node-typescript
+      category: language
+    - name: ntop
+      category: util
+    - name: python3-pip
+      category: util
+    - name: ripgrep
+      category: util
+    - name: rofi
+      category: util
+    - name: rsync
+      category: util
+    - name: sddm
+      category: util
+    - name: sshfs
+      category: util
+    - name: shellcheck
+      category: util
+    - name: stacer                          
+      category: util
+    - name: sublimetext
+      category: editor
+      ppa: deb https://download.sublimetext.com/ apt/stable/
+    - name: suckless-tools
+      category: util
+      cli-command: dmenu
+    - name: synaptic
+      category: util
+    - name: terminator 
+      category: util
+    - name: thunderbird
+      category: email
+    - name: touchegg
+      category: util
+      ppa: ppa:touchegg/stable
+      used-for:  https://github.com/JoseExposito/gnome-shell-extension-x11gestures
+    - name: tree                  
+      category: util
+    - name: tmux
+      category: util
+    - name: vifm
+      category: file-manager
+    - name: virt-manager
+      category: virtual
+    - name: vim
+      category: editor
+    - name: vlc
+      category: video
+    - name: vlc-plugin-bittorrent
+      category: util
+    - name: wget
+      category: util
+    - name: xplanet
+      category: util
+    - name: xterm
+      category: util
+    - name: zim
+      category: wiki
+    - name: zsh-syntax-highlighting
+      category: util
+    - name: zsh
+      category: util
+  - npm:
+    - name: yarn
+      category: util
+
