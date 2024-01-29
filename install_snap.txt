@@ -10,10 +10,12 @@ intellij-idea-community --classic
 keepassxc                          
 krita                              
 nuclear                            
+obsidian
 opera                              
 pinta
 poddr
 postman                            
+qownnotes
 raven-reader
 slack                              
 spotify  

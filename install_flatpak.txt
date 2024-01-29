@@ -6,3 +6,5 @@ com.github.maoschanz.drawing
 com.rafaelmardojai.Blanket
 # radio
 de.haeckerfelix.Shortwave
+#Markdown note taking application
+md.obsidian.Obsidian
